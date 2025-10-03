@@ -9,9 +9,9 @@ Pod::Spec.new do |s|
   s.description      = <<-DESC
   一款基于穿山甲GroMore SDK的Flutter广告插件，支持开屏、插屏、激励视频、信息流等多种广告形式。完全使用CocoaPods管理依赖，版本7.1.0.3支持完整ADN聚合。
                        DESC
-  s.homepage         = 'https://github.com/zhecent'
+  s.homepage         = 'https://www.zhecent.com'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'ZheCent' => 'contact@zhecent.com' }
+  s.author           = { 'lightcore' => '369620805@qq.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
@@ -19,10 +19,9 @@ Pod::Spec.new do |s|
   
   # GroMore 聚合 SDK - 版本 7.1.0.8 （包含 BUAdSDK）
   s.dependency 'Ads-CN/CSJMediation', '6.8.1.3'
-  
-  # GroMore 测试 SDK - 使用本地框架及资源
-  s.ios.vendored_frameworks = 'Frameworks/BUAdTestMeasurement.xcframework'
-  s.resources = ['Frameworks/BUAdTestMeasurement.bundle']
+
+  # GroMore 测试 SDK（仅在 Debug 模式下有效）
+  s.dependency 'BUAdTestMeasurement', '6.8.1.3', :configurations => ['Debug']
   
   # 引入使用到的ADN SDK，开发者请按需引入
   # s.dependency 'GDTMobSDK', '4.15.41'

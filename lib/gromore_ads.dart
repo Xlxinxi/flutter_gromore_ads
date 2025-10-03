@@ -441,7 +441,7 @@ class GromoreAds {
       'rewardName': rewardName,
       'rewardAmount': rewardAmount,
       'mutedIfCan': mutedIfCan,
-      'volume': volume == null ? null : volume.clamp(0.0, 1.0).toDouble(),
+      'volume': volume?.clamp(0.0, 1.0).toDouble(),
       'bidNotify': bidNotify,
       'scenarioId': scenarioId,
       'useSurfaceView': useSurfaceView,
@@ -722,7 +722,7 @@ class GromoreAds {
     return _platform.getPlatformVersion();
   }
 
-  static Map<String, dynamic> _buildParams(Map<String, dynamic?> source) {
+  static Map<String, dynamic> _buildParams(Map<String, dynamic> source) {
     final result = <String, dynamic>{};
     source.forEach((key, value) {
       if (value == null) {
@@ -970,11 +970,10 @@ class _RewardVideoSubscriptionImpl extends _AdEventSubscriptionImpl {
     this.onSkipped,
     this.onClicked,
     this.onClosed,
-    void Function(AdErrorEvent)? onError,
+    super.onError,
   }) : super(
           posIdFilter: posId,
           actionPrefix: 'reward_video_',
-          onError: onError,
         );
 
   @override
@@ -1046,11 +1045,10 @@ class _SplashSubscriptionImpl extends _AdEventSubscriptionImpl {
     this.onShowed,
     this.onClicked,
     this.onClosed,
-    void Function(AdErrorEvent)? onError,
+    super.onError,
   }) : super(
           posIdFilter: posId,
           actionPrefix: 'splash_',
-          onError: onError,
         );
 
   @override
@@ -1106,11 +1104,10 @@ class _InterstitialSubscriptionImpl extends _AdEventSubscriptionImpl {
     this.onShowed,
     this.onClicked,
     this.onClosed,
-    void Function(AdErrorEvent)? onError,
+    super.onError,
   }) : super(
           posIdFilter: posId,
           actionPrefix: 'interstitial_',
-          onError: onError,
         );
 
   @override
@@ -1166,11 +1163,10 @@ class _FeedSubscriptionImpl extends _AdEventSubscriptionImpl {
     this.onShowed,
     this.onClicked,
     this.onClosed,
-    void Function(AdErrorEvent)? onError,
+    super.onError,
   }) : super(
           posIdFilter: posId,
           actionPrefix: 'feed_',
-          onError: onError,
         );
 
   @override
@@ -1226,11 +1222,10 @@ class _DrawFeedSubscriptionImpl extends _AdEventSubscriptionImpl {
     this.onShowed,
     this.onClicked,
     this.onClosed,
-    void Function(AdErrorEvent)? onError,
+    super.onError,
   }) : super(
           posIdFilter: posId,
           actionPrefix: 'draw_feed_',
-          onError: onError,
         );
 
   @override
