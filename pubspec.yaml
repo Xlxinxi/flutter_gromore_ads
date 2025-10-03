@@ -1,0 +1,29 @@
+name: gromore_ads
+description: "GroMore 广告聚合 Flutter 插件，提供开屏、插屏、横幅、激励视频等广告能力。"
+version: 1.0.0
+homepage: https://www.zhecent.com/sdks/flutter-gromore-ads
+repository: https://github.com/Xlxinxi/flutter_gromore_ads
+documentation: https://www.zhecent.com/sdks/flutter-gromore-ads
+
+environment:
+  sdk: ^3.9.0
+  flutter: '>=3.3.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  plugin_platform_interface: ^2.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.zhecent.gromore_ads
+        pluginClass: GromoreAdsPlugin
+      ios:
+        pluginClass: GromoreAdsPlugin

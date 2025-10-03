@@ -1,0 +1,93 @@
+group = "com.zhecent.gromore_ads"
+version = "1.0-SNAPSHOT"
+
+buildscript {
+    ext.kotlin_version = "2.1.0"
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url "https://artifact.bytedance.com/repository/pangle"  //穿山甲融合SDK依赖
+        }
+    }
+
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.9.1")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
+        //Gromore自动拉取 Adapre AAR 插件脚本
+        classpath 'com.pangle.cn:mediation-auto-adapter:1.0.3'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url "https://artifact.bytedance.com/repository/pangle"  //穿山甲融合SDK依赖
+        }
+    }
+}
+
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
+
+android {
+    namespace = "com.zhecent.gromore_ads"
+
+    compileSdk = 34
+    
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+    
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11
+    }
+
+    sourceSets {
+        main.java.srcDirs += "src/main/kotlin"
+        test.java.srcDirs += "src/test/kotlin"
+    }
+
+    defaultConfig {
+        minSdk = 24
+    }
+
+    dependencies {
+        implementation 'androidx.appcompat:appcompat:1.6.1'
+        implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
+        implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+        
+        implementation "com.pangle.cn:mediation-sdk:7.1.1.4"  //融合SDK
+        
+        // GroMore测试工具依赖，仅作编译期占位。实际运行时需由宿主工程自行引入，避免AAR打包冲突。
+        compileOnly files('libs/tools-release.aar')
+        
+        // 图片加载库，用于测试工具的图片加载回调
+        implementation 'com.github.bumptech.glide:glide:4.16.0'
+        
+        testImplementation("org.jetbrains.kotlin:kotlin-test")
+        testImplementation("org.mockito:mockito-core:5.0.0")
+    }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+
+            testLogging {
+               events "passed", "skipped", "failed", "standardOut", "standardError"
+               outputs.upToDateWhen {false}
+               showStandardStreams = true
+            }
+        }
+    }
+}
