@@ -7,34 +7,34 @@ import 'package:flutter/services.dart';
 class AdFeedWidget extends StatefulWidget {
   /// 广告位ID
   final String posId;
-  
+
   /// 广告数据ID（从loadFeedAd返回的ID）
   final int adId;
-  
+
   /// 宽度
   final double width;
-  
+
   /// 高度
   final double height;
-  
+
   /// 是否可见
   final bool isVisible;
-  
+
   /// 加载回调
   final VoidCallback? onAdLoaded;
-  
+
   /// 错误回调
   final Function(String error)? onAdError;
-  
+
   /// 点击回调
   final VoidCallback? onAdClicked;
-  
+
   /// 关闭回调
   final VoidCallback? onAdClosed;
-  
+
   /// 渲染成功回调
   final VoidCallback? onAdRenderSuccess;
-  
+
   /// 渲染失败回调
   final Function(String error)? onAdRenderFail;
 
@@ -66,7 +66,7 @@ class _AdFeedWidgetState extends State<AdFeedWidget> {
 
     // 根据平台选择对应的原生视图
     const String viewType = 'gromore_ads_feed';
-    
+
     // 创建参数Map
     final Map<String, dynamic> creationParams = <String, dynamic>{
       'posId': widget.posId,
@@ -109,7 +109,7 @@ class _AdFeedWidgetState extends State<AdFeedWidget> {
   void _onPlatformViewCreated(int id) {
     // 创建与原生端通信的MethodChannel
     final MethodChannel channel = MethodChannel('gromore_ads_feed_$id');
-    
+
     // 设置方法调用处理器
     channel.setMethodCallHandler((MethodCall call) async {
       switch (call.method) {

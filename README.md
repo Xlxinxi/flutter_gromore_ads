@@ -5,6 +5,26 @@
 
 GroMore 广告插件基于穿山甲（Pangle）GroMore 聚合能力，为 Flutter 应用提供开屏、插屏、横幅、激励、信息流等多种广告形式。
 
+📖 [完整文档](https://www.zhecent.com/sdks/flutter-gromore-ads)
+
+> 💬 作者是一位经验丰富的互联网从业人员，深耕互联网多年。如果您在使用过程中遇到问题，或者想交流广告变现、短剧APP等相关话题，欢迎添加作者微信 **light_core** 交流探讨。
+
+---
+
+## 🔗 Flutter 穿山甲广告变现套件系列
+
+本插件是 **Flutter 穿山甲系列插件** 的核心广告组件，提供完整的 GroMore 聚合广告能力。
+
+| 插件 | 说明 | 文档 |
+|------|------|------|
+| **gromore_ads** | GroMore 聚合广告（当前插件） | [查看文档](https://www.zhecent.com/sdks/flutter-gromore-ads) |
+| [**pangrowth_content**](https://pub.dev/packages/pangrowth_content) | 穿山甲内容（短剧/小视频/故事） | [查看文档](https://www.zhecent.com/sdks/flutter-pangrowth-content) |
+| **gromore_adspark** | 穿山甲 AdSpark 智能广告投放（规划中） | - |
+| **pangle_ecommerce** | 穿山甲电商联盟 - 抖音电商CPS（规划中） | - |
+| **pangle_global** | Pangle Global 穿山甲国际版（规划中） | - |
+
+---
+
 ## ✨ 功能亮点
 
 - 🚀 支持开屏、插屏、Banner、激励视频、信息流、Draw Feed

@@ -177,7 +177,7 @@ class RewardVideoAdManager: NSObject, AdManagerProtocol {
         // 聚合维度相关设置（只设置存在的参数）
         let mediation = adSlot.mediation
         let args = call.arguments as? [String: Any] ?? [:]
-        
+
         // 检查调用参数是否存在，只有存在才设置（符合开发流程文档要求）
         if args.keys.contains("mutedIfCan"), let mutedIfCan = args["mutedIfCan"] as? Bool {
             mediation.mutedIfCan = mutedIfCan
@@ -187,6 +187,19 @@ class RewardVideoAdManager: NSObject, AdManagerProtocol {
         }
         if args.keys.contains("scenarioId"), let scenarioId = args["scenarioId"] as? String, !scenarioId.isEmpty {
             mediation.scenarioID = scenarioId
+        }
+
+        // 设置显示方向（参考插屏广告实现）
+        if args.keys.contains("orientation"), let orientation = args["orientation"] as? Int {
+            // 将Flutter的orientation值转换为iOS的显示方向值
+            // vertical(1) -> 0, horizontal(2) -> 1
+            let direction = orientation == 2 ? 1 : 0
+            mediation.addParam(NSNumber(value: direction), withKey: "show_direction")
+        }
+
+        // volume参数iOS不支持，记录警告
+        if args.keys.contains("volume"), let volume = args["volume"] as? Double {
+            logger.logWarning("当前 iOS 激励视频广告不支持 volume 参数，已忽略: \(volume)")
         }
         
         // 创建奖励视频模型（只设置存在的参数，符合开发流程文档要求）
@@ -358,8 +371,8 @@ extension RewardVideoAdManager: BUNativeExpressRewardedVideoAdDelegate {
      * 激励视频广告渲染成功
      */
     func nativeExpressRewardedVideoAdViewRenderSuccess(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd) {
-        logger.logAdEvent("reward_video_render_success", posId: currentPosId)
-        eventHelper.sendRewardVideoEvent("reward_video_render_success", posId: currentPosId)
+        logger.logAdEvent(AdConstants.Events.rewardVideoRenderSuccess, posId: currentPosId)
+        eventHelper.sendRewardVideoEvent(AdConstants.Events.rewardVideoRenderSuccess, posId: currentPosId)
     }
     
     /**
@@ -378,8 +391,8 @@ extension RewardVideoAdManager: BUNativeExpressRewardedVideoAdDelegate {
      * CSJ广告建议在此回调时展示广告，聚合维度在didLoad后检查isReady再展示
      */
     func nativeExpressRewardedVideoAdDidDownLoadVideo(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd) {
-        logger.logAdEvent("reward_video_download_success", posId: currentPosId)
-        eventHelper.sendRewardVideoEvent("reward_video_download_success", posId: currentPosId)
+        logger.logAdEvent(AdConstants.Events.rewardVideoDownloadSuccess, posId: currentPosId)
+        eventHelper.sendRewardVideoEvent(AdConstants.Events.rewardVideoDownloadSuccess, posId: currentPosId)
     }
     
     /**
@@ -391,6 +404,14 @@ extension RewardVideoAdManager: BUNativeExpressRewardedVideoAdDelegate {
         
         logger.logAdError(AdConstants.AdType.rewardVideo, action: "展示失败", posId: currentPosId, errorCode: errorCode, errorMessage: errorMessage)
         eventHelper.sendErrorEvent(adType: AdConstants.AdType.rewardVideo, posId: currentPosId, errorCode: errorCode, errorMessage: "展示失败: \(errorMessage)")
+        eventHelper.sendRewardVideoEvent(
+            AdConstants.Events.rewardVideoError,
+            posId: currentPosId,
+            extra: [
+                "code": errorCode,
+                "message": errorMessage
+            ]
+        )
         
         // 重置状态
         resetState(clearRequest: false)
@@ -412,8 +433,8 @@ extension RewardVideoAdManager: BUNativeExpressRewardedVideoAdDelegate {
                     "ritID": ecpmInfo.slotID ?? "",
                     "requestID": ecpmInfo.requestID ?? ""
                 ]
-                logger.logAdEvent("reward_video_ecpm_info", posId: currentPosId, extra: ecpmData)
-                eventHelper.sendRewardVideoEvent("reward_video_ecpm_info", posId: currentPosId, extra: ecpmData)
+                logger.logAdEvent(AdConstants.Events.rewardVideoEcpmInfo, posId: currentPosId, extra: ecpmData)
+                eventHelper.sendRewardVideoEvent(AdConstants.Events.rewardVideoEcpmInfo, posId: currentPosId, extra: ecpmData)
             }
         }
     }
@@ -422,8 +443,8 @@ extension RewardVideoAdManager: BUNativeExpressRewardedVideoAdDelegate {
      * 激励视频广告即将展示
      */
     func nativeExpressRewardedVideoAdWillVisible(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd) {
-        logger.logAdEvent("reward_video_will_show", posId: currentPosId)
-        eventHelper.sendRewardVideoEvent("reward_video_will_show", posId: currentPosId)
+        logger.logAdEvent(AdConstants.Events.rewardVideoWillShow, posId: currentPosId)
+        eventHelper.sendRewardVideoEvent(AdConstants.Events.rewardVideoWillShow, posId: currentPosId)
     }
     
     /**
@@ -509,7 +530,7 @@ extension RewardVideoAdManager: BUNativeExpressRewardedVideoAdDelegate {
             failInfo["customData"] = customData
         }
         
-        eventHelper.sendRewardVideoEvent("reward_video_reward_fail", posId: currentPosId, extra: failInfo)
+        eventHelper.sendRewardVideoEvent(AdConstants.Events.rewardVideoRewardFail, posId: currentPosId, extra: failInfo)
     }
 }
 

@@ -303,7 +303,7 @@ class GromoreAds {
     int? limitProgrammaticAds,
     int? themeStatus,
     int? ageGroup,
-    bool? supportMultiProcess,  // @android 多进程支持（仅Android）
+    bool? supportMultiProcess, // @android 多进程支持（仅Android）
   }) {
     final params = _buildParams({
       'appId': appId,
@@ -384,13 +384,13 @@ class GromoreAds {
     String posId, {
     int? orientation,
     bool? mutedIfCan,
-    double? volume,  // @android 仅Android支持
+    double? volume, // @android 仅Android支持
     bool? bidNotify,
     String? scenarioId,
-    bool? useSurfaceView,  // @android 仅Android支持
-    int? showDirection,  // @ios 仅iOS支持
-    String? rewardName,  // @ios 仅iOS支持（GDT渠道专用）
-    int? rewardAmount,  // @ios 仅iOS支持（GDT渠道专用）
+    bool? useSurfaceView, // @android 仅Android支持
+    int? showDirection, // @ios 仅iOS支持
+    String? rewardName, // @ios 仅iOS支持（GDT渠道专用）
+    int? rewardAmount, // @ios 仅iOS支持（GDT渠道专用）
     String? customData,
     Map<String, dynamic>? extraData,
     Map<String, dynamic>? extraParams,
@@ -512,11 +512,11 @@ class GromoreAds {
     int? height,
     int? count,
     bool? mutedIfCan,
-    double? volume,  // @android 仅Android支持
+    double? volume, // @android 仅Android支持
     bool? bidNotify,
     String? scenarioId,
-    bool? useSurfaceView,  // @android 仅Android支持
-    Map<String, dynamic>? extra,  // @android 仅Android支持
+    bool? useSurfaceView, // @android 仅Android支持
+    Map<String, dynamic>? extra, // @android 仅Android支持
   }) {
     final params = _buildParams({
       'posId': posId,
@@ -598,8 +598,8 @@ class GromoreAds {
     double? volume,
     bool? bidNotify,
     String? scenarioId,
-    bool? useSurfaceView,  // @android 仅Android支持
-    Map<String, dynamic>? extra,  // @android 仅Android支持
+    bool? useSurfaceView, // @android 仅Android支持
+    Map<String, dynamic>? extra, // @android 仅Android支持
   }) {
     final params = _buildParams({
       'posId': posId,
@@ -971,10 +971,7 @@ class _RewardVideoSubscriptionImpl extends _AdEventSubscriptionImpl {
     this.onClicked,
     this.onClosed,
     super.onError,
-  }) : super(
-          posIdFilter: posId,
-          actionPrefix: 'reward_video_',
-        );
+  }) : super(posIdFilter: posId, actionPrefix: 'reward_video_');
 
   @override
   void _handleEvent(Map<String, dynamic> payload) {
@@ -1046,10 +1043,7 @@ class _SplashSubscriptionImpl extends _AdEventSubscriptionImpl {
     this.onClicked,
     this.onClosed,
     super.onError,
-  }) : super(
-          posIdFilter: posId,
-          actionPrefix: 'splash_',
-        );
+  }) : super(posIdFilter: posId, actionPrefix: 'splash_');
 
   @override
   void _handleEvent(Map<String, dynamic> payload) {
@@ -1105,10 +1099,7 @@ class _InterstitialSubscriptionImpl extends _AdEventSubscriptionImpl {
     this.onClicked,
     this.onClosed,
     super.onError,
-  }) : super(
-          posIdFilter: posId,
-          actionPrefix: 'interstitial_',
-        );
+  }) : super(posIdFilter: posId, actionPrefix: 'interstitial_');
 
   @override
   void _handleEvent(Map<String, dynamic> payload) {
@@ -1164,10 +1155,7 @@ class _FeedSubscriptionImpl extends _AdEventSubscriptionImpl {
     this.onClicked,
     this.onClosed,
     super.onError,
-  }) : super(
-          posIdFilter: posId,
-          actionPrefix: 'feed_',
-        );
+  }) : super(posIdFilter: posId, actionPrefix: 'feed_');
 
   @override
   void _handleEvent(Map<String, dynamic> payload) {
@@ -1223,10 +1211,7 @@ class _DrawFeedSubscriptionImpl extends _AdEventSubscriptionImpl {
     this.onClicked,
     this.onClosed,
     super.onError,
-  }) : super(
-          posIdFilter: posId,
-          actionPrefix: 'draw_feed_',
-        );
+  }) : super(posIdFilter: posId, actionPrefix: 'draw_feed_');
 
   @override
   void _handleEvent(Map<String, dynamic> payload) {

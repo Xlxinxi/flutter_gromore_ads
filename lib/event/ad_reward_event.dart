@@ -1,6 +1,7 @@
 import 'ad_event.dart';
 
-String? _rewardAsString(dynamic value) => value is String ? value : value?.toString();
+String? _rewardAsString(dynamic value) =>
+    value is String ? value : value?.toString();
 
 int? _rewardAsInt(dynamic value) {
   if (value == null) return null;
@@ -52,8 +53,7 @@ class AdRewardEvent extends AdEvent {
         _rewardAsInt(extra['rewardAmount']);
 
     final verified =
-        _rewardAsBool(map['verified']) ||
-        _rewardAsBool(extra['verified']);
+        _rewardAsBool(map['verified']) || _rewardAsBool(extra['verified']);
 
     return AdRewardEvent(
       action: base.action,

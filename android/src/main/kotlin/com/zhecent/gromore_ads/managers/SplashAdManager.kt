@@ -155,6 +155,7 @@ class SplashAdManager(
             override fun onSplashRenderSuccess(csjSplashAd: CSJSplashAd?) {
                 logger.logAdSuccess(AdConstants.AD_TYPE_SPLASH, "渲染", posId)
                 eventHelper.sendLoadSuccessEvent(AdConstants.AD_TYPE_SPLASH, posId)
+                eventHelper.sendAdEvent(AdConstants.Events.SPLASH_RENDER_SUCCESS, posId)
 
                 if (preloadRequested) {
                     preloadedSplashAd = csjSplashAd

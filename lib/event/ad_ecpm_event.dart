@@ -61,15 +61,19 @@ class AdEcpmEvent extends AdEvent {
     final Map<String, dynamic> extra = base.extra ?? const <String, dynamic>{};
 
     final ecpmValue =
-        _ecpmAsDouble(map['ecpm']) ??
-        _ecpmAsDouble(extra['ecpm']) ??
-        0.0;
+        _ecpmAsDouble(map['ecpm']) ?? _ecpmAsDouble(extra['ecpm']) ?? 0.0;
 
     final network =
-        (map['networkName'] ?? extra['networkName'] ?? extra['sdkName'])?.toString();
+        (map['networkName'] ?? extra['networkName'] ?? extra['sdkName'])
+            ?.toString();
 
     final adn =
-        (map['adnId'] ?? map['ritID'] ?? extra['adnId'] ?? extra['ritID'] ?? extra['slotId'])?.toString();
+        (map['adnId'] ??
+                map['ritID'] ??
+                extra['adnId'] ??
+                extra['ritID'] ??
+                extra['slotId'])
+            ?.toString();
 
     final channel = (map['channel'] ?? extra['channel'])?.toString();
     final subChannel = (map['subChannel'] ?? extra['subChannel'])?.toString();
@@ -77,8 +81,9 @@ class AdEcpmEvent extends AdEvent {
     final ritType = (map['ritType'] ?? extra['ritType'])?.toString();
     final scenarioId = (map['scenarioId'] ?? extra['scenarioId'])?.toString();
     final levelTag = (map['levelTag'] ?? extra['levelTag'])?.toString();
-    final biddingType =
-        _asInt(map['reqBiddingType'] ?? extra['reqBiddingType'] ?? extra['biddingType']);
+    final biddingType = _asInt(
+      map['reqBiddingType'] ?? extra['reqBiddingType'] ?? extra['biddingType'],
+    );
     final customRaw = extra['customData'] ?? map['customData'];
     final customData = customRaw is Map
         ? customRaw.map((key, value) => MapEntry('$key', value))

@@ -62,10 +62,7 @@ class AdErrorEvent extends AdEvent {
   @override
   Map<String, dynamic> toMap() {
     final map = super.toMap();
-    map.addAll({
-      'message': message,
-      if (code != null) 'code': code,
-    });
+    map.addAll({'message': message, if (code != null) 'code': code});
     return map;
   }
 

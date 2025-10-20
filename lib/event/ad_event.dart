@@ -7,7 +7,10 @@ Map<String, dynamic>? extractEventExtra(Map<String, dynamic> map) {
 
   final fallback = <String, dynamic>{};
   map.forEach((key, value) {
-    if (key == 'action' || key == 'posId' || key == 'timestamp' || key == 'extra') {
+    if (key == 'action' ||
+        key == 'posId' ||
+        key == 'timestamp' ||
+        key == 'extra') {
       return;
     }
     fallback[key] = value;

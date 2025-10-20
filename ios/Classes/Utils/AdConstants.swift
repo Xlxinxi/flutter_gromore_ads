@@ -28,6 +28,7 @@ struct AdConstants {
         static let splashClosed = "splash_closed"
         static let splashLoadFail = "splash_load_fail"
         static let splashRenderFail = "splash_render_fail"
+        static let splashRenderSuccess = "splash_render_success"
         static let splashEcpm = "splash_ecpm"
         static let splashCardReady = "splash_card_ready"
         static let splashCardClicked = "splash_card_clicked"
@@ -48,7 +49,15 @@ struct AdConstants {
         static let interstitialCompleted = "interstitial_completed"
         static let interstitialSkipped = "interstitial_skipped"
         static let interstitialLoadFail = "interstitial_load_fail"
-        
+        static let interstitialRenderSuccess = "interstitial_render_success"
+        static let interstitialRenderFail = "interstitial_render_fail"
+        static let interstitialVideoDownloaded = "interstitial_video_downloaded"
+        static let interstitialWillClose = "interstitial_will_close"
+        static let interstitialWillPresentModal = "interstitial_will_present_modal"
+        static let interstitialRewardSucceed = "interstitial_reward_succeed"
+        static let interstitialRewardFail = "interstitial_reward_fail"
+        static let interstitialEcpmInfo = "interstitial_ecpm_info"
+
         // 激励视频广告事件
         static let rewardVideoLoaded = "reward_video_loaded"
         static let rewardVideoCached = "reward_video_cached"
@@ -59,6 +68,12 @@ struct AdConstants {
         static let rewardVideoSkipped = "reward_video_skipped"
         static let rewardVideoRewarded = "reward_video_rewarded"
         static let rewardVideoLoadFail = "reward_video_load_fail"
+        static let rewardVideoRenderSuccess = "reward_video_render_success"
+        static let rewardVideoDownloadSuccess = "reward_video_download_success"
+        static let rewardVideoWillShow = "reward_video_will_show"
+        static let rewardVideoEcpmInfo = "reward_video_ecpm_info"
+        static let rewardVideoError = "reward_video_error"
+        static let rewardVideoRewardFail = "reward_video_reward_fail"
         
         // 信息流广告事件
         static let feedLoaded = "feed_loaded"

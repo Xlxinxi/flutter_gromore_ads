@@ -328,8 +328,8 @@ extension InterstitialAdManager: BUNativeExpressFullscreenVideoAdDelegate {
      * 插屏广告渲染成功
      */
     func nativeExpressFullscreenVideoAdViewRenderSuccess(_ fullscreenVideoAd: BUNativeExpressFullscreenVideoAd) {
-        logger.logAdEvent("interstitial_render_success", posId: currentPosId)
-        eventHelper.sendInterstitialEvent("interstitial_render_success", posId: currentPosId)
+        logger.logAdEvent(AdConstants.Events.interstitialRenderSuccess, posId: currentPosId)
+        eventHelper.sendInterstitialEvent(AdConstants.Events.interstitialRenderSuccess, posId: currentPosId)
     }
     
     /**
@@ -387,8 +387,8 @@ extension InterstitialAdManager: BUNativeExpressFullscreenVideoAdDelegate {
      * 插屏广告视频下载成功（主要针对纯CSJ广告）
      */
     func nativeExpressFullscreenVideoAdDidDownLoadVideo(_ fullscreenVideoAd: BUNativeExpressFullscreenVideoAd) {
-        logger.logAdEvent("interstitial_video_downloaded", posId: currentPosId)
-        eventHelper.sendInterstitialEvent("interstitial_video_downloaded", posId: currentPosId)
+        logger.logAdEvent(AdConstants.Events.interstitialVideoDownloaded, posId: currentPosId)
+        eventHelper.sendInterstitialEvent(AdConstants.Events.interstitialVideoDownloaded, posId: currentPosId)
         
         // 根据官方文档建议：仅接入CSJ广告时建议在收到此回调后进行广告展示
         // 聚合模式则在 nativeExpressFullscreenVideoAdDidLoad 回调中展示
@@ -398,16 +398,16 @@ extension InterstitialAdManager: BUNativeExpressFullscreenVideoAdDelegate {
      * 插屏广告跳过
      */
     func nativeExpressFullscreenVideoAdDidClickSkip(_ fullscreenVideoAd: BUNativeExpressFullscreenVideoAd) {
-        logger.logAdEvent("interstitial_skipped", posId: currentPosId)
-        eventHelper.sendInterstitialEvent("interstitial_skipped", posId: currentPosId)
+        logger.logAdEvent(AdConstants.Events.interstitialSkipped, posId: currentPosId)
+        eventHelper.sendInterstitialEvent(AdConstants.Events.interstitialSkipped, posId: currentPosId)
     }
     
     /**
      * 插屏广告即将关闭
      */
     func nativeExpressFullscreenVideoAdWillClose(_ fullscreenVideoAd: BUNativeExpressFullscreenVideoAd) {
-        logger.logAdEvent("interstitial_will_close", posId: currentPosId)
-        eventHelper.sendInterstitialEvent("interstitial_will_close", posId: currentPosId)
+        logger.logAdEvent(AdConstants.Events.interstitialWillClose, posId: currentPosId)
+        eventHelper.sendInterstitialEvent(AdConstants.Events.interstitialWillClose, posId: currentPosId)
     }
     
     /**
@@ -425,7 +425,8 @@ extension InterstitialAdManager: BUNativeExpressFullscreenVideoAdDelegate {
                 "slotID": mediationInfo.slotID ?? "",
                 "requestID": mediationInfo.requestID ?? ""
             ]
-            logger.logAdEvent("interstitial_ecpm_info", posId: currentPosId, extra: ecpmInfo)
+            logger.logAdEvent(AdConstants.Events.interstitialEcpmInfo, posId: currentPosId, extra: ecpmInfo)
+            eventHelper.sendInterstitialEvent(AdConstants.Events.interstitialEcpmInfo, posId: currentPosId, extra: ecpmInfo)
         }
     }
 }
@@ -452,8 +453,8 @@ extension InterstitialAdManager: BUMNativeExpressFullscreenVideoAdDelegate {
      * 即将弹出广告详情页回调
      */
     func nativeExpressFullscreenVideoAdWillPresentFullScreenModal(_ fullscreenVideoAd: BUNativeExpressFullscreenVideoAd) {
-        logger.logAdEvent("interstitial_will_present_modal", posId: currentPosId)
-        eventHelper.sendInterstitialEvent("interstitial_will_present_modal", posId: currentPosId)
+        logger.logAdEvent(AdConstants.Events.interstitialWillPresentModal, posId: currentPosId)
+        eventHelper.sendInterstitialEvent(AdConstants.Events.interstitialWillPresentModal, posId: currentPosId)
     }
     
     /**
@@ -461,8 +462,8 @@ extension InterstitialAdManager: BUMNativeExpressFullscreenVideoAdDelegate {
      */
     func nativeExpressFullscreenVideoAdServerRewardDidSucceed(_ fullscreenVideoAd: BUNativeExpressFullscreenVideoAd, verify: Bool) {
         let rewardInfo = ["verify": verify]
-        logger.logAdEvent("interstitial_reward_succeed", posId: currentPosId, extra: rewardInfo)
-        eventHelper.sendInterstitialEvent("interstitial_reward_succeed", posId: currentPosId, extra: rewardInfo)
+        logger.logAdEvent(AdConstants.Events.interstitialRewardSucceed, posId: currentPosId, extra: rewardInfo)
+        eventHelper.sendInterstitialEvent(AdConstants.Events.interstitialRewardSucceed, posId: currentPosId, extra: rewardInfo)
     }
     
     /**
@@ -474,5 +475,13 @@ extension InterstitialAdManager: BUMNativeExpressFullscreenVideoAdDelegate {
         
         logger.logAdError(AdConstants.AdType.interstitial, action: "奖励验证失败", posId: currentPosId, errorCode: errorCode, errorMessage: errorMessage)
         eventHelper.sendErrorEvent(adType: AdConstants.AdType.interstitial, posId: currentPosId, errorCode: errorCode, errorMessage: "奖励验证失败: \(errorMessage)")
+        eventHelper.sendInterstitialEvent(
+            AdConstants.Events.interstitialRewardFail,
+            posId: currentPosId,
+            extra: [
+                "code": errorCode,
+                "message": errorMessage
+            ]
+        )
     }
 }

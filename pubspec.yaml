@@ -1,6 +1,9 @@
 name: gromore_ads
-description: "GroMore 广告聚合 Flutter 插件，提供开屏、插屏、横幅、激励视频等广告能力。"
-version: 1.0.0
+description: >-
+  GroMore 广告聚合 Flutter 插件，提供开屏、插屏、横幅、激励视频、信息流等广告能力。
+  Flutter plugin for GroMore ad aggregation platform, supporting splash, interstitial,
+  banner, rewarded video, feed and draw feed ads with unified API for iOS and Android.
+version: 1.0.2
 homepage: https://www.zhecent.com/sdks/flutter-gromore-ads
 repository: https://github.com/Xlxinxi/flutter_gromore_ads
 documentation: https://www.zhecent.com/sdks/flutter-gromore-ads

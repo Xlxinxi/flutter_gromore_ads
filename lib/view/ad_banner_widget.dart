@@ -104,7 +104,7 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
 
     // 根据平台选择对应的原生视图
     const String viewType = 'gromore_ads_banner';
-    
+
     // 创建参数Map
     final Map<String, dynamic> creationParams = <String, dynamic>{
       'posId': widget.posId,
@@ -169,7 +169,7 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
   void _onPlatformViewCreated(int id) {
     // 创建与原生端通信的MethodChannel
     final MethodChannel channel = MethodChannel('gromore_ads_banner_$id');
-    
+
     // 设置方法调用处理器
     channel.setMethodCallHandler((MethodCall call) async {
       switch (call.method) {
@@ -200,7 +200,9 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
           break;
         case 'onEcpmInfo':
           if (call.arguments is Map) {
-            final Map<String, dynamic> ecpmData = Map<String, dynamic>.from(call.arguments as Map);
+            final Map<String, dynamic> ecpmData = Map<String, dynamic>.from(
+              call.arguments as Map,
+            );
             widget.onEcpmInfo?.call(ecpmData);
           }
           break;

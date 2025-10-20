@@ -7,6 +7,7 @@ import com.bytedance.sdk.openadsdk.TTAdConstant
 import com.bytedance.sdk.openadsdk.TTAdNative
 import com.bytedance.sdk.openadsdk.TTAdSdk
 import com.bytedance.sdk.openadsdk.TTRewardVideoAd
+import com.bytedance.sdk.openadsdk.mediation.MediationConstant
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationAdSlot
 import com.zhecent.gromore_ads.common.AdConstants
 import com.zhecent.gromore_ads.common.AdManagerInterface
@@ -282,6 +283,9 @@ class RewardVideoAdManager(
         request.rewardName?.let { mediationSlotBuilder.setRewardName(it) }
         request.rewardAmount?.let { mediationSlotBuilder.setRewardAmount(it) }
         request.scenarioId?.let { mediationSlotBuilder.setScenarioId(it) }
+        request.customData?.let {
+            mediationSlotBuilder.setExtraObject(MediationConstant.CUSTOM_DATA_KEY_GROMORE_EXTRA, it)
+        }
 
         return adSlotBuilder
             .setMediationAdSlot(mediationSlotBuilder.build())
@@ -314,7 +318,7 @@ class RewardVideoAdManager(
 
             override fun onVideoError() {
                 logger.logAdError(AdConstants.AD_TYPE_REWARD_VIDEO, "播放", posId, -1, "视频播放异常")
-                eventHelper.sendAdEvent("reward_video_error", posId)
+                eventHelper.sendAdEvent(AdConstants.Events.REWARD_VIDEO_ERROR, posId)
             }
 
             override fun onRewardVerify(

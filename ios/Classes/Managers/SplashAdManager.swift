@@ -497,7 +497,7 @@ extension SplashAdManager: BUSplashAdDelegate {
     }
 
     func splashAdRenderSuccess(_ splashAd: BUSplashAd) {
-        eventHelper.sendSplashEvent("splash_render_success", posId: currentPosId)
+        eventHelper.sendSplashEvent(AdConstants.Events.splashRenderSuccess, posId: currentPosId)
     }
 
     func splashAdRenderFail(_ splashAd: BUSplashAd, error: BUAdError?) {

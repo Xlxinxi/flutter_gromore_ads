@@ -9,6 +9,7 @@ class AdEventAction {
   static const String splashTimeOver = 'splash_time_over';
   static const String splashLoadError = 'splash_load_fail';
   static const String splashRenderFail = 'splash_render_fail';
+  static const String splashRenderSuccess = 'splash_render_success';
   static const String splashEcpm = 'splash_ecpm';
   static const String splashCardReady = 'splash_card_ready';
   static const String splashCardClicked = 'splash_card_clicked';
@@ -17,7 +18,8 @@ class AdEventAction {
   static const String splashZoomOutClicked = 'splash_zoom_out_clicked';
   static const String splashZoomOutClosed = 'splash_zoom_out_closed';
   static const String splashResume = 'splash_resume';
-  static const String splashViewControllerClosed = 'splash_view_controller_closed';
+  static const String splashViewControllerClosed =
+      'splash_view_controller_closed';
   static const String splashVideoFinished = 'splash_video_finished';
 
   // 插屏广告事件
@@ -31,11 +33,14 @@ class AdEventAction {
   static const String interstitialLoadError = 'interstitial_load_fail';
   static const String interstitialRenderSuccess = 'interstitial_render_success';
   static const String interstitialRenderFail = 'interstitial_render_fail';
-  static const String interstitialVideoDownloaded = 'interstitial_video_downloaded';
+  static const String interstitialVideoDownloaded =
+      'interstitial_video_downloaded';
   static const String interstitialWillClose = 'interstitial_will_close';
-  static const String interstitialWillPresentModal = 'interstitial_will_present_modal';
+  static const String interstitialWillPresentModal =
+      'interstitial_will_present_modal';
   static const String interstitialRewardSucceed = 'interstitial_reward_succeed';
   static const String interstitialRewardFail = 'interstitial_reward_fail';
+  static const String interstitialEcpmInfo = 'interstitial_ecpm_info';
 
   // 激励视频事件
   static const String rewardVideoLoaded = 'reward_video_loaded';
@@ -47,13 +52,27 @@ class AdEventAction {
   static const String rewardVideoSkipped = 'reward_video_skipped';
   static const String rewardVideoRewarded = 'reward_video_rewarded';
   static const String rewardVideoLoadError = 'reward_video_load_fail';
-  static const String rewardVideoPlayAgainShowed = 'reward_video_play_again_showed';
-  static const String rewardVideoPlayAgainClicked = 'reward_video_play_again_clicked';
-  static const String rewardVideoPlayAgainClosed = 'reward_video_play_again_closed';
-  static const String rewardVideoPlayAgainCompleted = 'reward_video_play_again_completed';
-  static const String rewardVideoPlayAgainError = 'reward_video_play_again_error';
-  static const String rewardVideoPlayAgainRewarded = 'reward_video_play_again_rewarded';
-  static const String rewardVideoPlayAgainSkipped = 'reward_video_play_again_skipped';
+  static const String rewardVideoRenderSuccess = 'reward_video_render_success';
+  static const String rewardVideoDownloadSuccess =
+      'reward_video_download_success';
+  static const String rewardVideoWillShow = 'reward_video_will_show';
+  static const String rewardVideoEcpmInfo = 'reward_video_ecpm_info';
+  static const String rewardVideoError = 'reward_video_error';
+  static const String rewardVideoRewardFail = 'reward_video_reward_fail';
+  static const String rewardVideoPlayAgainShowed =
+      'reward_video_play_again_showed';
+  static const String rewardVideoPlayAgainClicked =
+      'reward_video_play_again_clicked';
+  static const String rewardVideoPlayAgainClosed =
+      'reward_video_play_again_closed';
+  static const String rewardVideoPlayAgainCompleted =
+      'reward_video_play_again_completed';
+  static const String rewardVideoPlayAgainError =
+      'reward_video_play_again_error';
+  static const String rewardVideoPlayAgainRewarded =
+      'reward_video_play_again_rewarded';
+  static const String rewardVideoPlayAgainSkipped =
+      'reward_video_play_again_skipped';
 
   // 激励奖励通用事件
   static const String rewardVerify = 'reward_verify';
