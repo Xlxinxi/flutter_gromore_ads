@@ -1,3 +1,5 @@
+
+
 # GroMore 广告插件
 
 [![pub package](https://img.shields.io/pub/v/gromore_ads.svg)](https://pub.dev/packages/gromore_ads)
@@ -44,7 +46,7 @@ GroMore 广告插件基于穿山甲（Pangle）GroMore 聚合能力，为 Flutte
 
 ```yaml
 dependencies:
-  gromore_ads: ^latest_version
+  gromore_ads: ^1.0.2
 ```
 
 ## 🚀 快速开始
